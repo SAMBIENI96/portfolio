@@ -1,36 +1,38 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio — Ebenezer SAMBIENI
 
-## Getting Started
+Portfolio de développeur web et mobile. Next.js (App Router) + TypeScript + Tailwind CSS v4, animations GSAP (ScrollTrigger) et défilement fluide Lenis.
 
-First, run the development server:
+## Commandes
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install      # installer les dépendances
+npm run dev      # développement : http://localhost:3000
+npm run lint     # vérification du code
+npm run build    # build de production
+npm run start    # lancer le build de production
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+src/
+├── app/            layout (polices, métadonnées, icônes), page d'accueil, styles globaux
+├── components/     sections de la page (Hero, Layers, Projects, Method, Skills, Contact…)
+├── content/site.ts contenu du portfolio (sera géré par l'admin plus tard)
+└── lib/gsap.ts     enregistrement GSAP + jetons de mouvement
+public/             icônes et logos issus de identite-ebenezer-sambieni-v2
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Charte graphique
 
-## Learn More
+Couleurs, polices et logos : voir `identite-ebenezer-sambieni-v2/LISEZ-MOI.md`.
+Turquoise `#1EC8D2` (accents, fonds sombres), turquoise profond `#0B7F88` (texte sur blanc), noir `#0B0B0C`, blanc, gris clair `#F4F6F6`. Polices : Sora et JetBrains Mono.
 
-To learn more about Next.js, take a look at the following resources:
+## Animations et accessibilité
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Toutes les animations passent par `gsap.matchMedia()` avec `prefers-reduced-motion: no-preference`.
+Si l'utilisateur demande de réduire les animations, la page s'affiche complète et statique.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Contenu à compléter
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Tout ce qui est entre `[crochets]` ou marqué `toConfirm` dans `src/content/site.ts` doit être confirmé avant publication.

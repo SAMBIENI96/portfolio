@@ -1,26 +1,76 @@
 @import "tailwindcss";
 
+/* Charte graphique — identite-ebenezer-sambieni-v2
+   Dosage : 50 % blanc, 35 % noir, 15 % turquoise.
+   Turquoise vif = accents et fonds sombres ; turquoise profond = texte sur blanc. */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --turquoise: #1ec8d2;
+  --turquoise-deep: #0b7f88;
+  --ink: #0b0b0c;
+  --paper: #ffffff;
+  --mist: #f4f6f6;
+  --ink-muted: #55595c;
+  --paper-muted: #a3a8aa;
+  --line-light: rgba(11, 11, 12, 0.12);
+  --line-dark: rgba(255, 255, 255, 0.14);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-turquoise: var(--turquoise);
+  --color-turquoise-deep: var(--turquoise-deep);
+  --color-ink: var(--ink);
+  --color-paper: var(--paper);
+  --color-mist: var(--mist);
+  --color-ink-muted: var(--ink-muted);
+  --color-paper-muted: var(--paper-muted);
+  --color-line-light: var(--line-light);
+  --color-line-dark: var(--line-dark);
+  --font-sans: var(--font-sora);
+  --font-mono: var(--font-jetbrains);
+
+  /* Échelle fluide : grand écart entre display et texte courant */
+  --text-display: clamp(3.25rem, 11.5vw, 11rem);
+  --text-title: clamp(2.25rem, 5.5vw, 5rem);
+  --text-lead: clamp(1.375rem, 2.6vw, 2.5rem);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: auto;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sora), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--turquoise);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--turquoise);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Lenis */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Évite le flash avant l'entrée GSAP du hero ; jamais caché si les animations sont réduites */
+@media (prefers-reduced-motion: no-preference) {
+  .js [data-intro] {
+    visibility: hidden;
+  }
 }

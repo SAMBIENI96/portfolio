@@ -44,7 +44,7 @@ export const projects: Project[] = [
     stack: ["Laravel", "PHP", "[Base de données]"],
     status: "Déployé",
     proves: "Logique métier, authentification, autorisations par rôle, base de données",
-    demoUrl: "https://gestion-garage-kmas.onrender.com",
+    demoUrl: "https://app-nu-three-47.vercel.app/",
     toConfirm: true,
   },
   {

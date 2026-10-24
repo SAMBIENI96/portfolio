@@ -31,6 +31,7 @@ export const profile = {
   languages: ["Français — courant", "Anglais — courant"],
   links: {
     github: "https://github.com/SAMBIENI96",
+    whatsapp: "https://wa.me/2290143509006",
     linkedin: "https://www.linkedin.com/in/ebenezer-sambieni-582264235/",
     cv: "/cv-ebenezer-sambieni.pdf",
   },
@@ -84,32 +85,32 @@ export const method = [
 export const skills = [
   {
     domain: "Front-end",
-    items: ["React.js", "JavaScript (ES6+)", "HTML5", "CSS3", "Tailwind CSS", "Bootstrap"],
+    items: ["React.js", "Next.js", "TypeScript", "JavaScript (ES6+)", "HTML5", "CSS3", "Tailwind CSS", "Bootstrap", "Vue.js"],
     does: "Intégrer des maquettes en composants React réutilisables, responsives et fidèles au design.",
     proof: ["Agence ALTA", "Intside", "Croisière à la Maison Blanche"],
   },
   {
     domain: "Back-end",
-    items: ["Laravel (PHP)", "Node.js", "API REST sécurisées"],
+    items: ["Laravel", "PHP", "Node.js", "Express.js", "API REST sécurisées", "Filament", "Webhooks de paiement (FedaPay)"],
     does: "Construire des API REST sécurisées et la logique métier de projets clients.",
     proof: ["Agence ALTA", "AutoGest", "Aheme Media"],
   },
   {
     domain: "Bases de données",
-    items: ["MySQL", "MongoDB"],
+    items: ["MySQL", "MongoDB", "PostgreSQL", "Supabase", "Eloquent ORM"],
     does: "Modéliser les données d'une application métier : utilisateurs, rôles, interventions.",
-    proof: ["AutoGest"],
+    proof: ["AutoGest", "Croisière à la Maison Blanche"],
   },
   {
     domain: "CMS & Web",
-    items: ["WordPress", "Elementor Pro", "SEO", "Google Analytics"],
-    does: "Livrer des sites WordPress sur mesure, optimiser le référencement et former les clients.",
+    items: ["WordPress", "Elementor Pro", "SEO", "Google Analytics", "Google Search Console", "Vercel", "Render"],
+    does: "Livrer des sites WordPress sur mesure, les mettre en ligne, optimiser le référencement et former les clients.",
     proof: ["Agence ALTA", "Digi Master"],
   },
   {
-    domain: "Qualité",
-    items: ["Tests automatisés", "Optimisation des performances", "Débogage"],
-    does: "Fiabiliser les livraisons : tests, débogage et pages plus rapides.",
+    domain: "Qualité & outils",
+    items: ["Tests automatisés", "Optimisation des performances", "Débogage", "Git", "GitHub", "Figma", "Docker"],
+    does: "Fiabiliser les livraisons : tests, débogage, versionnage du code et pages plus rapides.",
     proof: ["Agence ALTA", "Intside"],
   },
 ];

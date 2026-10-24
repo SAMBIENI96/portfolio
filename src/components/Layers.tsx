@@ -10,17 +10,17 @@ const layers = [
   {
     label: "Interface",
     text: "Des écrans clairs, responsive et accessibles, pensés pour la personne qui les utilise.",
-    tools: "React.js · JavaScript · Tailwind CSS · Bootstrap",
+    tools: "React.js · Next.js · TypeScript · Tailwind CSS · Bootstrap",
   },
   {
     label: "API & intégrations",
     text: "Relier l'application aux services dont elle a besoin : authentification, données, paiement.",
-    tools: "API REST sécurisées · FedaPay · Supabase",
+    tools: "API REST sécurisées · Express.js · Webhooks · FedaPay · Supabase",
   },
   {
     label: "Serveur & données",
     text: "La logique métier, les rôles, les autorisations et une base de données bien structurée.",
-    tools: "Laravel · Node.js · MySQL · MongoDB",
+    tools: "Laravel · PHP · Node.js · MySQL · PostgreSQL · MongoDB",
   },
 ];
 

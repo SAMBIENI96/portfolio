@@ -11,6 +11,7 @@ export default function Contact() {
   const [copied, setCopied] = useState(false);
   const { email, links } = profile;
   const socials = [
+    { label: "WhatsApp", href: links.whatsapp },
     { label: "GitHub", href: links.github },
     { label: "LinkedIn", href: links.linkedin },
     { label: "CV (PDF)", href: links.cv },

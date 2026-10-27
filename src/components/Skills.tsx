@@ -2,16 +2,18 @@
 
 import { useRef, useState } from "react";
 import { gsap, ScrollTrigger, useGSAP, motion, MOTION_OK } from "@/lib/gsap";
-import { skills } from "@/content/site";
+import { useContent } from "@/content/ContentProvider";
 import RevealHeading from "./RevealHeading";
 
-const allTools = skills.flatMap((s) => s.items);
-const half = Math.ceil(allTools.length / 2);
-const rows = [allTools.slice(0, half), allTools.slice(half)];
 
 export default function Skills() {
   const root = useRef<HTMLElement>(null);
   const [open, setOpen] = useState(0);
+  const { skills, ui } = useContent();
+  const t = ui.skills;
+  const allTools = skills.flatMap((s) => s.items);
+  const half = Math.ceil(allTools.length / 2);
+  const rows = [allTools.slice(0, half), allTools.slice(half)];
 
   // Bandeaux : défilement continu, accéléré et incliné par la vitesse de scroll,
   // inversé quand on remonte la page.
@@ -78,14 +80,14 @@ export default function Skills() {
     <section ref={root} id="competences" aria-labelledby="competences-title" className="overflow-hidden bg-ink py-28 text-paper lg:py-40">
       <div className="px-4 sm:px-8 lg:px-12">
         <p className="mb-4 font-mono text-sm text-paper-muted">
-          <span className="text-turquoise">{"//"}</span> compétences
+          <span className="text-turquoise">{"//"}</span> {t.label}
         </p>
         <div className="flex flex-wrap items-end justify-between gap-6">
           <RevealHeading id="competences-title" className="max-w-[12ch] text-[length:var(--text-title)] font-extrabold leading-[0.95] tracking-[-0.035em]">
-            Ce que je sais faire.
+            {t.title}
           </RevealHeading>
           <p className="max-w-[34ch] text-paper-muted">
-            Chaque domaine dit ce que j&apos;en fais concrètement, et où le voir.
+            {t.note}
           </p>
         </div>
       </div>
@@ -139,7 +141,7 @@ export default function Skills() {
                     {group.domain}
                   </span>
                   <span className="flex items-center gap-4 font-mono text-[0.75rem] text-paper-muted">
-                    <span className="hidden sm:inline">{group.items.length} outils</span>
+                    <span className="hidden sm:inline">{group.items.length} {t.tools}</span>
                     <span
                       aria-hidden
                       className={`relative block size-6 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${isOpen ? "rotate-45" : ""}`}
@@ -173,7 +175,7 @@ export default function Skills() {
                     <div className="skill-detail col-span-12 lg:col-span-5">
                       <p className="text-lg leading-relaxed">{group.does}</p>
                       <p className="mt-4 font-mono text-[0.8rem] text-paper-muted">
-                        <span className="text-turquoise">vu chez / dans →</span> {group.proof.join(" · ")}
+                        <span className="text-turquoise">{t.seenAt}</span> {group.proof.join(" · ")}
                       </p>
                     </div>
                   </div>

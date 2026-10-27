@@ -2,11 +2,13 @@
 
 import { useRef } from "react";
 import { gsap, useGSAP, MOTION_OK } from "@/lib/gsap";
-import { education, experiences, profile } from "@/content/site";
+import { useContent } from "@/content/ContentProvider";
 import RevealHeading from "./RevealHeading";
 
 export default function Experience() {
   const root = useRef<HTMLElement>(null);
+  const { education, experiences, profile, ui } = useContent();
+  const t = ui.journey;
 
   useGSAP(
     () => {
@@ -40,18 +42,18 @@ export default function Experience() {
         <div className="col-span-12 lg:col-span-4">
           <div className="lg:sticky lg:top-28">
             <p className="mb-4 font-mono text-sm text-ink-muted">
-              <span className="text-turquoise-deep">{"//"}</span> parcours
+              <span className="text-turquoise-deep">{"//"}</span> {t.label}
             </p>
             <RevealHeading id="parcours-title" className="max-w-[10ch] text-[length:var(--text-title)] font-extrabold leading-[0.95] tracking-[-0.035em]">
-              Là où j&apos;ai appris en livrant.
+              {t.title}
             </RevealHeading>
             <dl className="mt-10 grid gap-5 font-mono text-[0.8rem]">
               <div>
-                <dt className="text-ink-muted">base</dt>
+                <dt className="text-ink-muted">{t.base}</dt>
                 <dd className="mt-1">{profile.location}</dd>
               </div>
               <div>
-                <dt className="text-ink-muted">langues</dt>
+                <dt className="text-ink-muted">{t.languages}</dt>
                 <dd className="mt-1">{profile.languages.join(" · ")}</dd>
               </div>
             </dl>

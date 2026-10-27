@@ -3,25 +3,27 @@
 import Image from "next/image";
 import { useRef, useState } from "react";
 import { gsap, SplitText, useGSAP, motion, MOTION_OK } from "@/lib/gsap";
-import { profile } from "@/content/site";
+import { useContent } from "@/content/ContentProvider";
 import Magnetic from "./Magnetic";
 
 export default function Contact() {
   const root = useRef<HTMLElement>(null);
   const [copied, setCopied] = useState(false);
+  const { profile, ui } = useContent();
+  const t = ui.contact;
   const { email, links } = profile;
   const socials = [
     { label: "WhatsApp", href: links.whatsapp },
     { label: "GitHub", href: links.github },
     { label: "LinkedIn", href: links.linkedin },
-    { label: "CV (PDF)", href: links.cv },
+    { label: ui.hero.cv, href: links.cv },
   ];
 
   useGSAP(
     () => {
       const mm = gsap.matchMedia();
       mm.add(MOTION_OK, () => {
-        // Les lettres de « Parlons » montent l'une après l'autre, le point tombe en dernier.
+        // Les lettres du titre montent l'une après l'autre, le point tombe en dernier.
         const split = SplitText.create(".contact-word", { type: "chars", mask: "chars" });
         const tl = gsap.timeline({ scrollTrigger: { trigger: ".contact-title", start: "top 80%", once: true } });
         tl.from(split.chars, { yPercent: 110, duration: motion.slow, ease: motion.out, stagger: 0.05 })
@@ -45,17 +47,17 @@ export default function Contact() {
   return (
     <footer ref={root} id="contact" className="overflow-hidden bg-ink px-4 pb-10 pt-28 text-paper sm:px-8 lg:px-12 lg:pt-40">
       <p className="mb-6 font-mono text-sm text-paper-muted">
-        <span className="text-turquoise">{"//"}</span> contact
+        <span className="text-turquoise">{"//"}</span> {t.label}
       </p>
       <h2 className="contact-title text-[length:var(--text-display)] font-extrabold leading-[0.9] tracking-[-0.045em]">
-        <span className="contact-word">Parlons</span>
+        <span className="contact-word">{t.title}</span>
         <span className="contact-dot inline-block text-turquoise">.</span>
       </h2>
 
       <div className="mt-16 grid grid-cols-12 gap-y-10 border-t border-line-dark pt-10">
         <div className="col-span-12 md:col-span-7">
           <p className="max-w-[40ch] text-lg leading-relaxed text-paper-muted">
-            {profile.availability}. Un projet, une mission ou un poste : écrivez-moi, je réponds personnellement.
+            {profile.availability}. {t.text}
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
             <Magnetic strength={0.2}>
@@ -71,10 +73,10 @@ export default function Contact() {
               onClick={copy}
               className="border border-line-dark px-4 py-2 font-mono text-[0.75rem] transition-colors hover:border-turquoise hover:text-turquoise"
             >
-              {copied ? "Copié ✓" : "Copier"}
+              {copied ? t.copied : t.copy}
             </button>
             <span role="status" className="sr-only">
-              {copied ? "Adresse e-mail copiée" : ""}
+              {copied ? t.copiedSr : ""}
             </span>
           </div>
         </div>
@@ -86,7 +88,7 @@ export default function Contact() {
                   {s.label} ↗
                 </a>
               ) : (
-                <span className="text-paper-muted">{s.label} — à ajouter</span>
+                <span className="text-paper-muted">{s.label} — {t.toAdd}</span>
               )}
             </li>
           ))}
@@ -96,7 +98,7 @@ export default function Contact() {
 
       <div className="mt-24 flex flex-wrap items-center justify-between gap-6 font-mono text-[0.75rem] text-paper-muted">
         <Image src="/brand/logo-horizontal-inverse.svg" alt="Ebenezer SAMBIENI" width={160} height={39} className="h-8 w-auto" />
-        <p>© Ebenezer SAMBIENI · conçu et développé par moi-même</p>
+        <p>{t.footer}</p>
       </div>
     </footer>
   );

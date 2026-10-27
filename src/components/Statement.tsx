@@ -2,10 +2,11 @@
 
 import { useRef } from "react";
 import { gsap, useGSAP, MOTION_OK } from "@/lib/gsap";
-import { profile } from "@/content/site";
+import { useContent } from "@/content/ContentProvider";
 
 export default function Statement() {
   const root = useRef<HTMLElement>(null);
+  const { profile, ui } = useContent();
   const words = profile.statement.split(" ");
 
   useGSAP(
@@ -25,10 +26,10 @@ export default function Statement() {
   );
 
   return (
-    <section ref={root} aria-label="Ma démarche" className="bg-paper px-4 py-28 sm:px-8 lg:px-12 lg:py-40">
+    <section ref={root} aria-label={ui.statement.aria} className="bg-paper px-4 py-28 sm:px-8 lg:px-12 lg:py-40">
       <div className="grid grid-cols-12">
         <p className="col-span-12 mb-8 font-mono text-sm text-ink-muted lg:col-span-3">
-          <span className="text-turquoise-deep">{"//"}</span> démarche
+          <span className="text-turquoise-deep">{"//"}</span> {ui.statement.label}
         </p>
         <p className="statement-text col-span-12 text-[length:var(--text-lead)] font-semibold leading-[1.2] tracking-[-0.02em] lg:col-span-9">
           {words.map((word, i) => (

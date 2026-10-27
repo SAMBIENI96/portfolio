@@ -16,9 +16,10 @@ npm run start    # lancer le build de production
 
 ```
 src/
-├── app/            layout (polices, métadonnées, icônes), page d'accueil, styles globaux
+├── app/[lang]/     layout (polices, métadonnées, icônes) et page d'accueil, une par langue
+├── proxy.ts        redirige / vers /fr ou /en selon la langue du navigateur
 ├── components/     sections de la page (Hero, Layers, Projects, Method, Skills, Contact…)
-├── content/site.ts contenu du portfolio (sera géré par l'admin plus tard)
+├── content/        contenu du portfolio : fr.ts (français), en.ts (anglais), types.ts
 └── lib/gsap.ts     enregistrement GSAP + jetons de mouvement
 public/             icônes et logos issus de identite-ebenezer-sambieni-v2
 ```
@@ -35,4 +36,9 @@ Si l'utilisateur demande de réduire les animations, la page s'affiche complète
 
 ## Contenu à compléter
 
-Tout ce qui est entre `[crochets]` ou marqué `toConfirm` dans `src/content/site.ts` doit être confirmé avant publication.
+Tout ce qui est entre `[crochets]` ou marqué `toConfirm` dans `src/content/` doit être confirmé avant publication.
+
+## Langues
+
+Le site existe en français (`/fr`) et en anglais (`/en`). Le texte se modifie dans `src/content/fr.ts` et `src/content/en.ts` :
+toute modification d'un fichier doit être reportée dans l'autre. TypeScript signale un champ manquant au build.

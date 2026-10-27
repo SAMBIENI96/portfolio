@@ -2,11 +2,13 @@
 
 import { useRef } from "react";
 import { gsap, useGSAP, motion, MOTION_OK } from "@/lib/gsap";
-import { projects } from "@/content/site";
+import { useContent } from "@/content/ContentProvider";
 import RevealHeading from "./RevealHeading";
 
 export default function Projects() {
   const root = useRef<HTMLElement>(null);
+  const { projects, ui } = useContent();
+  const t = ui.projects;
 
   useGSAP(
     () => {
@@ -31,14 +33,14 @@ export default function Projects() {
       <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
         <div>
           <p className="mb-4 font-mono text-sm text-ink-muted">
-            <span className="text-turquoise-deep">{"//"}</span> projets
+            <span className="text-turquoise-deep">{"//"}</span> {t.label}
           </p>
           <RevealHeading id="projets-title" className="text-[length:var(--text-title)] font-extrabold leading-[0.95] tracking-[-0.035em]">
-            Projets choisis
+            {t.title}
           </RevealHeading>
         </div>
         <p className="max-w-[34ch] text-ink-muted">
-          Trois projets, choisis parce qu&apos;ils montrent des choses différentes.
+          {t.note}
         </p>
       </div>
 
@@ -56,11 +58,11 @@ export default function Projects() {
               </div>
               <dl className="col-span-10 col-start-3 grid content-start gap-4 font-mono text-[0.8rem] lg:col-span-4 lg:col-start-7">
                 <div>
-                  <dt className="text-ink-muted">stack</dt>
+                  <dt className="text-ink-muted">{t.stack}</dt>
                   <dd className="mt-1">{project.stack.join(" · ")}</dd>
                 </div>
                 <div>
-                  <dt className="text-ink-muted">ce que ça prouve</dt>
+                  <dt className="text-ink-muted">{t.proves}</dt>
                   <dd className="mt-1 font-sans text-sm">{project.proves}</dd>
                 </div>
               </dl>
@@ -69,18 +71,18 @@ export default function Projects() {
                   <span aria-hidden className="size-2 rounded-full bg-turquoise" />
                   {project.status}
                 </span>
-                {project.toConfirm && <span className="font-mono text-[0.75rem] text-ink-muted">à confirmer</span>}
+                {project.toConfirm && <span className="font-mono text-[0.75rem] text-ink-muted">{t.toConfirm}</span>}
                 {project.demoUrl && (
                   <a href={project.demoUrl} target="_blank" rel="noopener noreferrer" className="font-semibold underline decoration-turquoise decoration-2 underline-offset-4 hover:text-turquoise-deep">
-                    Démo en ligne ↗
+                    {t.demo} ↗
                   </a>
                 )}
                 {project.repoUrl && (
                   <a href={project.repoUrl} target="_blank" rel="noopener noreferrer" className="font-semibold underline decoration-turquoise decoration-2 underline-offset-4 hover:text-turquoise-deep">
-                    Code source ↗
+                    {t.code} ↗
                   </a>
                 )}
-                <span className="font-mono text-[0.75rem] text-ink-muted">Étude de cas bientôt</span>
+                <span className="font-mono text-[0.75rem] text-ink-muted">{t.caseStudySoon}</span>
               </div>
             </article>
           </li>

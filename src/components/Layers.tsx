@@ -4,28 +4,13 @@ import { useRef } from "react";
 import { gsap, useGSAP, MOTION_OK } from "@/lib/gsap";
 import RibbonMark from "./RibbonMark";
 import RevealHeading from "./RevealHeading";
-
-// Les trois barres du logo représentent les couches front / API / back (charte, LISEZ-MOI).
-const layers = [
-  {
-    label: "Interface",
-    text: "Des écrans clairs, responsive et accessibles, pensés pour la personne qui les utilise.",
-    tools: "React.js · Next.js · TypeScript · Tailwind CSS · Bootstrap",
-  },
-  {
-    label: "API & intégrations",
-    text: "Relier l'application aux services dont elle a besoin : authentification, données, paiement.",
-    tools: "API REST sécurisées · Express.js · Webhooks · FedaPay · Supabase",
-  },
-  {
-    label: "Serveur & données",
-    text: "La logique métier, les rôles, les autorisations et une base de données bien structurée.",
-    tools: "Laravel · PHP · Node.js · MySQL · PostgreSQL · MongoDB",
-  },
-];
+import { useContent } from "@/content/ContentProvider";
 
 export default function Layers() {
   const root = useRef<HTMLElement>(null);
+  // Les trois barres du logo représentent les couches front / API / back (charte, LISEZ-MOI).
+  const { ui } = useContent();
+  const layers = ui.layers.items;
 
   useGSAP(
     () => {
@@ -75,12 +60,12 @@ export default function Layers() {
       <div className="grid min-h-svh grid-cols-12 items-center gap-y-12 px-4 py-24 sm:px-8 lg:px-12">
         <div className="col-span-12 lg:col-span-5">
           <p className="mb-6 font-mono text-sm text-paper-muted">
-            <span className="text-turquoise">{"//"}</span> du frontend au backend
+            <span className="text-turquoise">{"//"}</span> {ui.layers.label}
           </p>
           <RevealHeading id="layers-title" className="max-w-[12ch] text-[length:var(--text-title)] font-extrabold leading-[0.95] tracking-[-0.035em]">
-            Trois couches, un seul produit.
+            {ui.layers.title}
           </RevealHeading>
-          <RibbonMark inverse className="mt-12 w-40 sm:w-56 lg:w-72" title="Les trois couches du symbole" />
+          <RibbonMark inverse className="mt-12 w-40 sm:w-56 lg:w-72" title={ui.layers.markTitle} />
         </div>
 
         <ol className="col-span-12 lg:col-span-6 lg:col-start-7">

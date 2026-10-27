@@ -2,13 +2,14 @@
 
 import { useRef } from "react";
 import { gsap, SplitText, ScrollTrigger, useGSAP, MOTION_OK } from "@/lib/gsap";
-import { method } from "@/content/site";
+import { useContent } from "@/content/ContentProvider";
 import RevealHeading from "./RevealHeading";
 
 // La méthode racontée comme un historique Git : un rail de commits se trace,
 // un compteur roule, et chaque étape arrive avec son message de commit.
 export default function Method() {
   const root = useRef<HTMLElement>(null);
+  const { method, ui } = useContent();
 
   useGSAP(
     () => {
@@ -93,10 +94,10 @@ export default function Method() {
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
             <p className="mb-4 font-mono text-sm text-ink-muted">
-              <span className="text-turquoise-deep">{"//"}</span> méthode
+              <span className="text-turquoise-deep">{"//"}</span> {ui.method.label}
             </p>
             <RevealHeading id="methode-title" className="max-w-[16ch] text-[length:var(--text-title)] font-extrabold leading-[0.95] tracking-[-0.035em]">
-              De l&apos;idée au produit en ligne.
+              {ui.method.title}
             </RevealHeading>
           </div>
           <p className="font-mono text-[0.8rem] text-ink-muted">

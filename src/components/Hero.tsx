@@ -2,12 +2,13 @@
 
 import { useRef } from "react";
 import { gsap, useGSAP, motion, MOTION_OK } from "@/lib/gsap";
-import { profile } from "@/content/site";
+import { useContent } from "@/content/ContentProvider";
 import RibbonMark from "./RibbonMark";
 import Magnetic from "./Magnetic";
 
 export default function Hero() {
   const root = useRef<HTMLElement>(null);
+  const { profile, ui } = useContent();
 
   useGSAP(
     () => {
@@ -76,13 +77,13 @@ export default function Hero() {
             href="#projets"
             className="group inline-flex items-center gap-3 bg-ink px-6 py-4 font-semibold text-paper transition-colors hover:bg-turquoise hover:text-ink"
           >
-            Voir mes projets
+            {ui.hero.seeProjects}
             <span aria-hidden className="transition-transform duration-300 group-hover:translate-y-0.5">↓</span>
           </a>
           </Magnetic>
           <Magnetic>
           <a href="#contact" className="font-semibold underline decoration-turquoise decoration-2 underline-offset-8 hover:text-turquoise-deep">
-            Me contacter
+            {ui.hero.contact}
           </a>
           </Magnetic>
           <a
@@ -91,7 +92,7 @@ export default function Hero() {
             rel="noopener noreferrer"
             className="font-mono text-sm text-ink-muted transition-colors hover:text-turquoise-deep"
           >
-            CV (PDF) ↗
+            {ui.hero.cv} ↗
           </a>
         </div>
       </div>
